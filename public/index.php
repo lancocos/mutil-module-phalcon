@@ -14,6 +14,26 @@ $di = new FactoryDefault();
 $di->set('route',function(){
 	 $router = new Router();
 	 $router->setDefaultModule("home");
+	 $router->setDefaults(array(
+        "namespace" => 'App\Home\Controllers',
+        "controller" => "Index",
+        "action" => "index"
+    ));
+	$router->add("/:controller", array(
+        'module'=>'home',
+        'controller' => 1,
+    ));
+    $router->add("/:controller/:action", array(
+        'module'=>'home',
+        'controller' => 1,
+        'action'     => 2,
+    ));
+    $router->add("/:controller/:action/:param", array(
+        'module'=>'home',
+        'controller' => 1,
+        'action'     => 2,
+        'param'      => 3,
+    ));
 	 return $router;
 });
 
